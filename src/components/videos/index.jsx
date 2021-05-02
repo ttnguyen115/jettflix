@@ -8,7 +8,7 @@ const Videos = () => {
     return (
         <div className="video">
             <div className="video__top">
-                <img src="" alt=""/>
+                <img src="/hero-1.jpg" alt=""/>
                 <span>50:30</span>
             </div>
 
@@ -18,14 +18,12 @@ const Videos = () => {
 
             <div className="video__details">
                 <span>
-                    <VisibilityIcon /> 5m views
+                    <VisibilityIcon /> 5m views <span> - 5 days ago </span>
                 </span>
-
-                <span>5 days ago</span>
             </div>
 
             <div className="video__channel">
-                <Avatar src="/broken-image.jpg" /> 
+                <Avatar src="/broken-image.jpg" sizes="30px" /> 
                 <p>Jett Nguyen</p>
             </div>
         </div>

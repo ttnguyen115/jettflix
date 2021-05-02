@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { isOpen, sidebarSelector } from '../../store/reducers/sidebarSlice';
+import { isOpen, sidebarSelector } from '../../redux/sidebarReducer/sidebarSlice';
 
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import EventIcon from '@material-ui/icons/Event';
 import HomeIcon from '@material-ui/icons/Home';
 import MovieFilterIcon from '@material-ui/icons/MovieFilter';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -50,12 +50,10 @@ const Sidebar = () => {
                 <span>TV Shows</span>
             </li>
 
-            <hr/>
             <li>
-                <ExitToAppIcon />
-                <span>Logout</span>
+                <EventIcon />
+                <span>Upcoming</span>
             </li>
-            <hr/>
         </nav>
     )
 }

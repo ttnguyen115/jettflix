@@ -3,7 +3,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { isOpen, sidebarSelector } from '../../store/reducers/sidebarSlice';
+import { isOpen, sidebarSelector } from '../../redux/sidebarReducer/sidebarSlice';
 import './_header.scss';
 
 const Header = () => {
@@ -31,6 +31,7 @@ const Header = () => {
                 </button>
             </form>
 
+            {/* Change to dark/light theme button later */}
             <div class="header__icons">
                 <Avatar src="/broken-image.jpg" /> 
             </div>
