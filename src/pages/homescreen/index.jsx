@@ -1,26 +1,35 @@
-import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
-// import CategoriesBar from '../../components/categoriesBar';
-import Videos from '../../components/videos';
-import { fetchRequests } from '../../helpers/fetchRequest';
-import tmdb from '../../apis/tmdb';
+import React, { useEffect } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import CategoriesBar from '../../components/categoriesBar';
+import Movies from '../../components/videos';
 import { TMDB_URL } from '../../constants/tmdbUrl';
+import { fetchMovieApi, selectMovies } from '../../redux/movieReducer/movieSlice';
+
 
 const HomeScreen = () => {
-    const data = fetchRequests(tmdb, TMDB_URL);
-    console.log(data);
+    const dispatch = useDispatch()
+    const {movies, loading} = useSelector(selectMovies);
+
+    useEffect(() => {
+        dispatch(fetchMovieApi(TMDB_URL[0]));  
+    }, [dispatch]);
 
     return (
         <Container>
-            {/* <CategoriesBar /> */}
+            <CategoriesBar />
 
             <Row>
-                {
-                    [...new Array(20)].map(() => (
-                        <Col lg={3} md={4} >
-                            <Videos />
-                        </Col>
-                    ))
+                { loading 
+                    ? (
+                        <> Loading... </>  
+                    ) : (
+                        movies.map(movie => (
+                            <Col lg={3} md={4} key={movie.id} >
+                                <Movies movie={movie}  />
+                            </Col>
+                        ))
+                    )
                 }
             </Row>
         </Container>

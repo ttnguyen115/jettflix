@@ -2,32 +2,27 @@ import React from 'react'
 
 import './_videos.scss';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import Avatar from '@material-ui/core/Avatar';
 
-const Videos = () => {
+const Movies = ({movie}) => {
+    const imgBaseUrl = 'https://image.tmdb.org/t/p/original';
+
     return (
         <div className="video">
             <div className="video__top">
-                <img src="/hero-1.jpg" alt=""/>
-                <span>50:30</span>
+                <img src={`${imgBaseUrl}${movie.poster_path}`} alt="poster movie"/>
             </div>
 
             <div className="video__title">
-                Test videoasdfakjsndfkjabsdjlghablsjkdbgajlhsdbfkajhsdbfkj
+                {movie.original_title || movie.name}
             </div>
 
             <div className="video__details">
                 <span>
-                    <VisibilityIcon /> 5m views <span> - 5 days ago </span>
+                    <VisibilityIcon /> {movie.vote_average} - {movie.release_date || movie.first_air_date}
                 </span>
-            </div>
-
-            <div className="video__channel">
-                <Avatar src="/broken-image.jpg" sizes="30px" /> 
-                <p>Jett Nguyen</p>
             </div>
         </div>
     )
 }
 
-export default Videos
+export default Movies

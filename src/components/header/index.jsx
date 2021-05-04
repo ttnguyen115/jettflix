@@ -32,7 +32,7 @@ const Header = () => {
             </form>
 
             {/* Change to dark/light theme button later */}
-            <div class="header__icons">
+            <div className="header__icons">
                 <Avatar src="/broken-image.jpg" /> 
             </div>
         </div>
