@@ -1,4 +1,6 @@
 import React from 'react'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import './_videos.scss';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -9,7 +11,11 @@ const Movies = ({movie}) => {
     return (
         <div className="video">
             <div className="video__top">
-                <img src={`${imgBaseUrl}${movie.poster_path}`} alt="poster movie"/>
+                <LazyLoadImage 
+                    src={`${imgBaseUrl}${movie.poster_path}`} 
+                    effect="blur" 
+                    alt={`${movie.original_title || movie.name}`} 
+                />
             </div>
 
             <div className="video__title">
