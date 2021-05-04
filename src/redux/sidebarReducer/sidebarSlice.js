@@ -10,7 +10,7 @@ const sidebarSlice = createSlice({
     reducers: {
         isOpen(state, action) {
             state.open = action.payload;
-        }
+        },
     }
 });
 

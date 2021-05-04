@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
 import './_categoriesBar.scss';
 import { genres } from '../../constants/genres';
+import { useDispatch } from 'react-redux';
+import { fetchGenreRequest } from '../../redux/movieReducer/movieSlice';
 
 const CategoriesBar = () => {
+    const dispatch = useDispatch();
     const [activeGenre, setActiveGenre] = useState('')
 
-    const handleActiveGenreClick = (value) => {
-        setActiveGenre(value);
+    const handleActiveGenreClick = (genre) => {
+        setActiveGenre(genre.name);
+        dispatch(fetchGenreRequest(genre.id));
     }
 
     return (
@@ -15,7 +19,7 @@ const CategoriesBar = () => {
                 Object.values(genres).map(genre => (
                     <span 
                         key={genre.id}
-                        onClick={() => handleActiveGenreClick(genre.name)}
+                        onClick={() => handleActiveGenreClick(genre)}
                         className={activeGenre === genre.name ? 'active' : '' }
                     >
                         {genre.name}

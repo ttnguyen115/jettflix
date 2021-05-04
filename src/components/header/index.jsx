@@ -1,15 +1,26 @@
 import Avatar from '@material-ui/core/Avatar';
 import SearchIcon from '@material-ui/icons/Search';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchSearchRequest } from '../../redux/movieReducer/movieSlice';
 import { isOpen, sidebarSelector } from '../../redux/sidebarReducer/sidebarSlice';
 import './_header.scss';
 
 const Header = () => {
     const sidebar = useSelector(sidebarSelector);
-
     const dispatch = useDispatch();
+    const [search, setSearch] = useState('');
+
+    const handleChange = e => {
+        setSearch(e.target.value);
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        dispatch(fetchSearchRequest(search));
+    }
 
     const handleToggleSidebar = () => {
         dispatch(isOpen(!sidebar));
@@ -24,8 +35,8 @@ const Header = () => {
 
             <img src="/jettflix.png" alt="" className="header__logo"/>
 
-            <form>
-                <input type="text" placeholder="Search" />
+            <form onSubmit={handleSubmit}>
+                <input type="text" placeholder="Search" onChange={e => handleChange(e)} />
                 <button type="submit">
                     <SearchIcon />
                 </button>

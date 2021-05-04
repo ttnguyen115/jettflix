@@ -71,37 +71,9 @@ export const genres = {
             id: 10752,
             name: 'War',
         },
-        '10759': {
-            id: 10759,
-            name: 'Action & Adventure',
-        },
-        '10762': {
-            id: 10762,
-            name: 'Kids',
-        },
-        '10763': {
-            id: 10763,
-            name: 'News',
-        },
-        '10764': {
-            id: 10764,
-            name: 'Reality',
-        },
         '10765': {
             id: 10765,
             name: 'Sci-Fi & Fantasy',
-        },
-        '10766': {
-            id: 10766,
-            name: 'Soap',
-        },
-        '10767': {
-            id: 10767,
-            name: 'Talk',
-        },
-        '10768': {
-            id: 10768,
-            name: 'War & Politics',
         },
         '10770': {
             id: 10770,
