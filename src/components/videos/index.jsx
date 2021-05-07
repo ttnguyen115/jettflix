@@ -4,12 +4,20 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import './_videos.scss';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import { useHistory } from 'react-router';
 
 const Movies = ({movie}) => {
     const imgBaseUrl = 'https://image.tmdb.org/t/p/original';
+    const history = useHistory();
+
+    const handleItemClick = () => {
+        history.push(`/detail/${movie.id}`);
+    }
 
     return (
-        <div className="video">
+        <div className="video"
+            onClick={handleItemClick}
+        >
             <div className="video__top">
                 <LazyLoadImage 
                     src={`${imgBaseUrl}${movie.poster_path}`} 

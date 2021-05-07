@@ -5,22 +5,16 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import TvIcon from '@material-ui/icons/Tv';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { TMDB_URL } from '../../constants/tmdbUrl';
 import { fetchMovieApi } from '../../redux/movieReducer/movieSlice';
-import { isOpen, sidebarSelector } from '../../redux/sidebarReducer/sidebarSlice';
 import './_sidebar.scss';
 
-const Sidebar = () => {
-    const sidebar = useSelector(sidebarSelector);
+const Sidebar = ({ sidebar, handleToggleSidebar }) => {
     const dispatch = useDispatch();
     
     const handleUseFetchHook = (link) => {
         dispatch(fetchMovieApi(link));
-    }
-
-    const handleToggleSidebar = () => {
-        dispatch(isOpen(false));
     }
 
     return (

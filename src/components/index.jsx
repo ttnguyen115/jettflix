@@ -1,23 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import CategoriesBar from './categoriesBar';
+import SkeletonCustom from './skeleton';
+import Movies from './videos';
+import { TMDB_URL } from '../constants/tmdbUrl';
+import { fetchMovieApi, selectMovies } from '../redux/movieReducer/movieSlice';
 
-import { Container } from "react-bootstrap";
-import Header from "./header";
-import Sidebar from './sidebar';
-import HomeScreen from "../pages/homescreen";
 
 const HomePage = () => {
+    const dispatch = useDispatch()
+    const {movies, loading} = useSelector(selectMovies);
+
+    useEffect(() => {
+        dispatch(fetchMovieApi(TMDB_URL[0]));  
+    }, [dispatch]);
+
     return (
-        <div>
-            <Header />
+        <Container>
+            <CategoriesBar />
 
-            <div className="app__container" >
-                <Sidebar />
-
-                <Container fluid className="app__main ">
-                    <HomeScreen  />
-                </Container>
-            </div>
-        </div>
+            <Row>
+                { loading 
+                    ?
+                        [...Array(20)].map(() => (
+                            <Col lg={3} md={4}>
+                                <SkeletonCustom />
+                            </Col>
+                        ))
+                    : (
+                        movies.map(movie => (
+                            <Col lg={3} md={4} key={movie.id} >
+                                <Movies movie={movie}  />
+                            </Col>
+                        ))
+                    )
+                }
+            </Row>
+        </Container>
     )
 }
 

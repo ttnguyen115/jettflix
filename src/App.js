@@ -1,18 +1,50 @@
+import { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-
-import HomePage from './components';
-import NotFound from './pages/notfound';
+import Header from './components/header';
+import Sidebar from './components/sidebar';
+import DetailScreen from './pages/detailscreen';
+import HomeScreen from './pages/homescreen';
 import './_app.scss';
 
 
+const Layout = ({ children }) => {
+  const [sidebar, toggleSidebar] = useState(false)
+
+  const handleToggleSidebar = () => toggleSidebar(value => !value)
+
+  return (
+     <>
+        <Header handleToggleSidebar={handleToggleSidebar} />
+        <div className='app__container'>
+           <Sidebar
+              sidebar={sidebar}
+              handleToggleSidebar={handleToggleSidebar}
+           />
+           <Container fluid className='app__main '>
+              {children}
+           </Container>
+        </div>
+     </>
+  )
+}
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/" component={ HomePage } exact />
-        <Route path='*' component={ NotFound } exact />
+        <Route path="/" exact >
+          <Layout>
+            <HomeScreen />
+          </Layout>
+        </Route>
 
+        <Route path='/detail/:id' exact >
+          <Layout>
+            <DetailScreen />
+          </Layout>
+        </Route>
+        
         <Route>
           <Redirect to="/" />
         </Route>
