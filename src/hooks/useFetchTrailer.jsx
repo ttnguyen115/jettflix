@@ -11,7 +11,7 @@ export default function useFetchTrailer(itemId) {
                 setIsLoading(true);
                 const url = `/movie/${itemId}/videos`;
                 const res = await tmdb.get(url);
-                setTrailers(res.data.results[res.data.results.length - 1]);
+                setTrailers(res.data.results[0]);
         
             } catch (err) {
                 console.log({msg: err.message});

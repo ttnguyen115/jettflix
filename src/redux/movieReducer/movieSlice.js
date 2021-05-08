@@ -18,7 +18,6 @@ export const fetchGenreRequest = createAsyncThunk(
             }
         });
 
-        // console.log(res);
         return res.data.results;
     }
 )
@@ -32,7 +31,6 @@ export const fetchSearchRequest = createAsyncThunk(
             }
         });
 
-        // console.log(res);
         return res.data.results;
     }
 )

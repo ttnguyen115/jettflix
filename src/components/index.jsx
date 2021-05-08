@@ -13,7 +13,7 @@ const HomePage = () => {
     const {movies, loading} = useSelector(selectMovies);
 
     useEffect(() => {
-        dispatch(fetchMovieApi(TMDB_URL[0]));  
+        dispatch(fetchMovieApi(TMDB_URL[0].url));  
     }, [dispatch]);
 
     return (
